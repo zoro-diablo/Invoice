@@ -25,12 +25,21 @@ const Invoice = () => {
   const [subtotal, setSubtotal] = useState(0)
   const [quantity, setQuantity] = useState(0)
   const [rate, setRate] = useState(0)
-  
+  const [salesTax, setSalesTax] = useState(0)
+  const [total, setTotal] = useState(0)
+
   useEffect(() => {
     const total = data.reduce((sum, item) => sum + item.qty * item.rate, 0)
     setSubtotal(total)
   }, [data])
 
+  useEffect(() => {
+    setSalesTax(subtotal / 15)
+  }, [subtotal])
+
+  useEffect(() => {
+    setTotal(subtotal + salesTax)
+  }, [subtotal, salesTax])
 
   console.log(quantity, rate)
 
@@ -311,12 +320,12 @@ const Invoice = () => {
               <div className='value'>{subtotal}</div>
             </div>
             <div className='col-one'>
-              <div>Sale Tax (10%)</div>
-              <div className='value'>2400</div>
+              <div>Sale Tax (15%)</div>
+              <div className='value'>{salesTax}</div>
             </div>
             <div className='col-one three'>
               <div>Total</div>
-              <div className='value'>$ 2400</div>
+              <div className='value'>{total}</div>
             </div>
           </div>
         </div>
