@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid'
 
 const Invoice = () => {
@@ -21,18 +21,28 @@ const Invoice = () => {
     desc: '',
     qty: '',
     rate: '',
-    amount: '',
   })
   const [subtotal, setSubtotal] = useState(0)
+  const [quantity, setQuantity] = useState(0)
+  const [rate, setRate] = useState(0)
+  
+  useEffect(() => {
+    const total = data.reduce((sum, item) => sum + item.qty * item.rate, 0)
+    setSubtotal(total)
+  }, [data])
 
   const handleAddFormChange = (event) => {
-    event.preventDefault()
-
     const fieldName = event.target.getAttribute('name')
     const fieldValue = event.target.value
 
     const newFormData = { ...addFormData }
     newFormData[fieldName] = fieldValue
+
+    if (fieldName === 'qty') {
+      setQuantity(parseFloat(fieldValue) || 0)
+    } else if (fieldName === 'rate') {
+      setRate(parseFloat(fieldValue) || 0)
+    }
 
     setAddFormData(newFormData)
   }
@@ -40,22 +50,20 @@ const Invoice = () => {
   const handleAddFormSubmit = (event) => {
     event.preventDefault()
 
-    const newData = {
+    const newFormData = {
       id: nanoid(),
       desc: addFormData.desc,
       qty: addFormData.qty,
       rate: addFormData.rate,
-      amount: addFormData.amount,
+      amount: (
+        parseFloat(addFormData.qty) * parseFloat(addFormData.rate)
+      ).toFixed(2),
     }
 
-    const newSubtotal = subtotal + parseFloat(addFormData.amount)
-    setSubtotal(newSubtotal)
-
-    const newDataArr = [...data, newData]
+    const newDataArr = [...data, newFormData]
     document.getElementById('desc').value = ''
     document.getElementById('qty').value = ''
     document.getElementById('rate').value = ''
-    document.getElementById('amount').value = ''
     setData(newDataArr)
   }
 
@@ -247,16 +255,14 @@ const Invoice = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((item, idx) => {
-                return (
-                  <tr key={idx}>
-                    <td>{item.desc}</td>
-                    <td>{item.qty}</td>
-                    <td>{item.rate}</td>
-                    <td>{item.amount}</td>
-                  </tr>
-                )
-              })}
+              {data.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.desc}</td>
+                  <td>{item.qty}</td>
+                  <td>{item.rate}</td>
+                  <td>{item.amount}</td>
+                </tr>
+              ))}
               <tr>
                 <td>
                   <input
@@ -283,12 +289,7 @@ const Invoice = () => {
                   />
                 </td>
                 <td>
-                  <input
-                    type='text'
-                    name='amount'
-                    onChange={handleAddFormChange}
-                    id='amount'
-                  />
+                  <div className='amount'></div>
                 </td>
               </tr>
             </tbody>
