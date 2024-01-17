@@ -27,7 +27,8 @@ body {
   body *:not(.print-container *) {
     visibility: hidden;
   }
-  .print-container, .print-container * {
+  .print-container,
+  .print-container * {
     visibility: visible;
   }
   .print-container {
@@ -39,6 +40,12 @@ body {
 
 @page {
   margin: 0;
+}
+
+@media print {
+  .btn {
+    display: none;
+  }
 }
 
 .container {
@@ -102,7 +109,7 @@ body {
 }
 
 .heading {
-  font-size: 40px; 
+  font-size: 40px;
   background-color: transparent;
   font-weight: 550;
   width: 200px;
@@ -138,7 +145,7 @@ body {
   background: transparent;
   color: #555555;
   font-weight: 500;
-   appearance: none;
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
@@ -171,7 +178,6 @@ body {
   appearance: none;
 }
 
-
 .container-two {
   width: 100%;
   margin: auto;
@@ -186,13 +192,14 @@ th {
   color: white;
 }
 
-th, td {
+th,
+td {
   padding: 1%;
   border-bottom: 1px solid #ddd;
   text-align: center;
 }
 
-input {
+td input {
   padding: 1%;
   margin: 1%;
   color: gray;
@@ -202,14 +209,17 @@ input {
 
 .btn {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
   width: 200px;
   cursor: pointer;
+  margin-top: 5px;
 }
 
 .plus {
   background-color: green;
-  padding: 10px;
+  width: 20px;
+  margin: 5px;
+  height: 20px;
   color: white;
   display: flex;
   justify-content: center;
@@ -217,7 +227,7 @@ input {
   border-radius: 20px;
 }
 
-.plus-text{
+.plus-text {
   display: flex;
   justify-content: center;
   align-items: center;
