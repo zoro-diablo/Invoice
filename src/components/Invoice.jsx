@@ -16,44 +16,48 @@ const Invoice = () => {
   const [date, setDate] = useState('')
   const [dueDate, setdueDate] = useState('')
   const [invoiceTitle, setInvoiceTitle] = useState('')
-    const [data, setData] = useState([])
-    const [addFormData, setAddFormData] = useState({
-      desc: '',
-      qty: '',
-      rate: '',
-      amount: '',
-    })
+  const [data, setData] = useState([])
+  const [addFormData, setAddFormData] = useState({
+    desc: '',
+    qty: '',
+    rate: '',
+    amount: '',
+  })
+  const [subtotal, setSubtotal] = useState(0)
 
-      const handleAddFormChange = (event) => {
-        event.preventDefault()
+  const handleAddFormChange = (event) => {
+    event.preventDefault()
 
-        const fieldName = event.target.getAttribute('name')
-        const fieldValue = event.target.value
+    const fieldName = event.target.getAttribute('name')
+    const fieldValue = event.target.value
 
-        const newFormData = { ...addFormData }
-        newFormData[fieldName] = fieldValue
+    const newFormData = { ...addFormData }
+    newFormData[fieldName] = fieldValue
 
-        setAddFormData(newFormData)
-      }
+    setAddFormData(newFormData)
+  }
 
-      const handleAddFormSubmit = (event) => {
-        event.preventDefault()
+  const handleAddFormSubmit = (event) => {
+    event.preventDefault()
 
-        const newData = {
-          id: nanoid(),
-          desc: addFormData.desc,
-          qty: addFormData.qty,
-          rate: addFormData.rate,
-          amount: addFormData.amount,
-        }
-        const newDataArr = [...data, newData]
-        document.getElementById('desc').value = ''
-        document.getElementById('qty').value = ''
-        document.getElementById('rate').value = ''
-        document.getElementById('amount').value = ''
-        setData(newDataArr)
-      }
+    const newData = {
+      id: nanoid(),
+      desc: addFormData.desc,
+      qty: addFormData.qty,
+      rate: addFormData.rate,
+      amount: addFormData.amount,
+    }
 
+    const newSubtotal = subtotal + parseFloat(addFormData.amount)
+    setSubtotal(newSubtotal)
+
+    const newDataArr = [...data, newData]
+    document.getElementById('desc').value = ''
+    document.getElementById('qty').value = ''
+    document.getElementById('rate').value = ''
+    document.getElementById('amount').value = ''
+    setData(newDataArr)
+  }
 
   const handlePrint = () => {
     window.print()
@@ -293,6 +297,22 @@ const Invoice = () => {
             <div className='btn' onClick={handleAddFormSubmit}>
               <h5 className='plus'>+</h5>
               <h5 className='plus-text'>Add Line Item</h5>
+            </div>
+          </div>
+        </div>
+        <div className='container-three'>
+          <div className='box'>
+            <div className='col-one'>
+              <div>SubTotal</div>
+              <div className='value'>{subtotal}</div>
+            </div>
+            <div className='col-one'>
+              <div>Sale Tax (10%)</div>
+              <div className='value'>2400</div>
+            </div>
+            <div className='col-one three'>
+              <div>Total</div>
+              <div className='value'>$ 2400</div>
             </div>
           </div>
         </div>

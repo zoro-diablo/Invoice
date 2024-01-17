@@ -234,3 +234,35 @@ td input {
   justify-content: center;
   align-items: center;
 }
+
+.container-three{
+  display: flex;
+  justify-content: end;
+  margin: 20px;
+}
+
+.box{
+  display: flex;
+  flex-direction: column;
+}
+
+.col-one{
+  display: flex;
+  font-size: 14px;
+  gap: 120px;
+  padding: 5px;
+  padding-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.three{
+background-color: rgb(208, 206, 202);
+font-size: 16px;
+padding-top: 15px;
+
+}
+
+.value{
+  font-weight: bold;
+}
