@@ -325,7 +325,7 @@ const Invoice = () => {
             </div>
             <div className='col-one three'>
               <div>Total</div>
-              <div className='value'>{total}</div>
+              <div className='value'> $ {total}</div>
             </div>
           </div>
         </div>
