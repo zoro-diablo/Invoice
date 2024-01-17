@@ -31,6 +31,9 @@ const Invoice = () => {
     setSubtotal(total)
   }, [data])
 
+
+  console.log(quantity, rate)
+
   const handleAddFormChange = (event) => {
     const fieldName = event.target.getAttribute('name')
     const fieldValue = event.target.value
