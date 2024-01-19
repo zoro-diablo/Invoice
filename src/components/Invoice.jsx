@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid'
 
-const Invoice = () => {
+const Invoice = ({ taxRate, discountRate }) => {
   const [logo, setLogo] = useState(null)
   const [company, setCompany] = useState('')
   const [name, setName] = useState('')
@@ -34,12 +34,14 @@ const Invoice = () => {
   }, [data])
 
   useEffect(() => {
-    setSalesTax(subtotal / 15)
-  }, [subtotal])
+    const salesTaxValue = subtotal / taxRate
+    setSalesTax(salesTaxValue)
+    setTotal(subtotal + salesTaxValue)
+  }, [subtotal, taxRate])
 
   useEffect(() => {
-    setTotal(subtotal + salesTax)
-  }, [subtotal, salesTax])
+    setTotal(subtotal + salesTax - discountRate)
+  }, [subtotal, salesTax, discountRate])
 
   console.log(quantity, rate)
 
@@ -317,15 +319,19 @@ const Invoice = () => {
           <div className='box'>
             <div className='col-one'>
               <div>SubTotal</div>
-              <div className='value'>{subtotal}</div>
+              <div className='value'>{subtotal.toFixed(2)}</div>
             </div>
             <div className='col-one'>
-              <div>Sale Tax (15%)</div>
-              <div className='value'>{salesTax}</div>
+              <div>Sale Tax ( {taxRate} % )</div>
+              <div className='value'>{salesTax.toFixed(2)}</div>
+            </div>
+            <div className='col-one'>
+              <div>Discount</div>
+              <div className='value'>{discountRate}</div>
             </div>
             <div className='col-one three'>
               <div>Total</div>
-              <div className='value'> $ {total}</div>
+              <div className='value'> $ {total.toFixed(2)}</div>
             </div>
           </div>
         </div>

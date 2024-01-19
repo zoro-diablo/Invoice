@@ -9,11 +9,75 @@ body {
   background-color: #f3f2f5;
 }
 
+.app-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-left: 150px;
+}
+
+.app-container1 {
+  margin-left: 20px;
+  margin-bottom: 680px;
+}
+.review-button {
+  padding: 10px 15px;
+  font-size: 16px;
+  width: 250px;
+
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.input-container .input-field {
+  margin-bottom: 15px;
+}
+
+.input-container label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-container .input-with-button {
+  display: flex;
+  align-items: center;
+}
+
+.input-container input {
+  padding: 8px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 215px;
+  box-sizing: border-box;
+}
+
+.input-container .percentage-button {
+  padding: 8px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .main {
   display: flex;
-  justify-content: center;
-  margin: 50px;
-  position: relative;
+  flex-direction: column;
+  align-items: center;
 }
 
 .print {
@@ -217,6 +281,10 @@ td input {
   margin-top: 5px;
 }
 
+.delete-icon {
+  cursor: pointer;
+}
+
 .plus {
   background-color: green;
   width: 20px;
@@ -235,18 +303,22 @@ td input {
   align-items: center;
 }
 
-.container-three{
+#btn {
+  cursor: pointer;
+}
+
+.container-three {
   display: flex;
   justify-content: end;
   margin: 20px;
 }
 
-.box{
+.box {
   display: flex;
   flex-direction: column;
 }
 
-.col-one{
+.col-one {
   display: flex;
   font-size: 14px;
   gap: 120px;
@@ -256,17 +328,16 @@ td input {
   align-items: center;
 }
 
-.three{
-background-color: rgb(208, 206, 202);
-font-size: 16px;
-padding-top: 15px;
-
+.three {
+  background-color: rgb(208, 206, 202);
+  font-size: 16px;
+  padding-top: 15px;
 }
 
-.value{
+.value {
   font-weight: bold;
 }
 
-.amount{
+.amount {
   width: 150px;
 }
