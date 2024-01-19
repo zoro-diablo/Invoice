@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid'
+import PropTypes from 'prop-types'
 
 const Invoice = ({ taxRate, discountRate }) => {
   const [logo, setLogo] = useState(null)
@@ -338,6 +339,11 @@ const Invoice = ({ taxRate, discountRate }) => {
       </div>
     </div>
   )
+}
+
+Invoice.propTypes = {
+  taxRate: PropTypes.number.isRequired,
+  discountRate: PropTypes.number.isRequired,
 }
 
 export default Invoice
