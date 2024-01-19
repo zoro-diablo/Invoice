@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Invoice from './components/Invoice'
-import Form from './components/form'
 import './index.css'
+import SubForm from './components/SubForm'
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
   return (
     <div className='app-container'>
       <Invoice taxRate={taxRate} discountRate={discountRate} />
-      <Form onFormSubmit={handleFormSubmit} />
+      <SubForm onFormSubmit={handleFormSubmit} />
     </div>
   )
 }

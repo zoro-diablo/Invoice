@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Form = ({ onFormSubmit }) => {
+const SubForm = ({ onFormSubmit }) => {
   const [taxRate, setTaxRate] = useState(0)
   const [discountRate, setDiscountRate] = useState(0)
 
@@ -9,7 +9,6 @@ const Form = ({ onFormSubmit }) => {
     e.preventDefault()
     onFormSubmit(taxRate, discountRate)
   }
-
   return (
     <div className='app-container1'>
       <button className='review-button'>Review Invoice</button>
@@ -47,8 +46,8 @@ const Form = ({ onFormSubmit }) => {
   )
 }
 
-Form.propTypes = {
+SubForm.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
 }
 
-export default Form
+export default SubForm
